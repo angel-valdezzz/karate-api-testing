@@ -65,11 +65,11 @@ Feature: Demo Users API business contract
 
   Scenario: Invalid credentials and pagination
     Given path 'users'
-    And header X-API-Key = 'invalid'
+    * configure headers = { 'X-API-Key': 'invalid' }
     When method get
     Then status 401
     Given path 'users'
-    And header X-API-Key = apiKey
+    * configure headers = { 'X-API-Key': '#(apiKey)' }
     And param limit = 0
     When method get
     Then status 422
